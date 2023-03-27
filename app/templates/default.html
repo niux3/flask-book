@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/min.css') }}">
+    </head>
+    <body>
+        {% if messages %}
+        {% for message in messages.flash %}
+        <div class="flash {{ message.type }}">
+            <p class="container">{{ message.txt }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <main class="grid has-gutter-xl">
+            <aside class="col-4">
+                {% include 'commons/nav.html' %}
+            </aside>
+            <section class="col-8">
+                <img src="{{ url_for('static', filename="img/logo.svg") }}" alt="" style="width: 50%; margin: 5rem auto 2.5rem; display: block;">
+                {% block content %}{% endblock %}
+            </section>
+        </main>
+
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    </body>
+</html>
