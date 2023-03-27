@@ -14,6 +14,8 @@ def create_app():
     # db
     db.init_app(app)
     migrate = Migrate()
+
+    from app.pages.models import Page
     migrate.init_app(app, db, directory=basedir/'app'/'migrations')
 
     # views
