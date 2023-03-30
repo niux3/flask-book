@@ -3,15 +3,16 @@ from slugify import slugify
 from app import db
 
 
-class Page(db.Model):
-    __tablename__ = 'pages_pages'
+class Post(db.Model):
+    __tablename__ = 'pages_posts'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
     slug = db.Column(db.String(128))
     content = db.Column(db.String)
     created = db.Column(db.DateTime, default=datetime.utcnow)
-    created = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.now)
+    updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.now)
+    online = db.Column(db.SmallInteger, default=1)
 
     def __init__(self, *args, **kwargs):
         super(Page, self).__init__(*args, **kwargs)
