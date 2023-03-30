@@ -1,0 +1,9 @@
+<form method="post">
+    {{ form.csrf_token }}
+    {% for field in form %}
+        {% with field=field %}
+            {% include 'commons/field.html' %}
+        {% endwith %}
+    {% endfor %}
+    <button class="primary" type="submit">envoyer</button>
+</form>

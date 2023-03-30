@@ -7,13 +7,15 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/min.css') }}">
     </head>
     <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        {% for message in messages.flash %}
-        <div class="flash {{ message.type }}">
-            <p class="container">{{ message.txt }}</p>
-        </div>
-        {% endfor %}
+            {% for category, message in messages %}
+                <div class="{{ category }}">
+                    <p class="container">{{ message }}</p>
+                </div>
+            {% endfor %}
         {% endif %}
+    {% endwith %}
         <main class="grid has-gutter-xl">
             <aside class="col-4">
                 {% include 'commons/nav.html' %}

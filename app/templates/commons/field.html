@@ -1,0 +1,9 @@
+{% if field.name != 'csrf_token' %}
+    <div class="input {% if field.flags.required %}require{% endif %}">
+        <span>{{ field.label }}</span>
+        <span>{{ field }}</span>
+        {% for error in field.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+{% endif %}
