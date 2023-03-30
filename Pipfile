@@ -10,6 +10,10 @@ python-dotenv = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 python-slugify = "*"
+flask-wtf = "*"
+wtforms-alchemy = "*"
+wtforms = "*"
+flask-admin = "*"
 
 [dev-packages]
 

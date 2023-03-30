@@ -1,5 +1,6 @@
 from datetime import datetime
 from slugify import slugify
+from app.pages.models import PostTag
 from app import db
 
 
@@ -9,13 +10,16 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128))
     slug = db.Column(db.String(128))
+    categories = db.Column(db.Integer, db.ForeignKey('pages_categories.id'))
     content = db.Column(db.String)
     created = db.Column(db.DateTime, default=datetime.utcnow)
     updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.now)
-    online = db.Column(db.SmallInteger, default=1)
+    online = db.Column(db.Boolean)
+    tags = db.relationship('Tag', secondary=PostTag, backref='pages_posts')
+
 
     def __init__(self, *args, **kwargs):
-        super(Page, self).__init__(*args, **kwargs)
+        super(Post, self).__init__(*args, **kwargs)
         self.generate_slug()
 
     def __str__(self):
